@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import User_Registration
 from django.http import HttpResponseRedirect
 from.models import User
+from django.contrib import messages
 # Create your views here.
 
 def addShow(request): #It add new data and show them
@@ -13,6 +14,7 @@ def addShow(request): #It add new data and show them
             pw = fm.cleaned_data['password']
             new_user = User(name=nm, email= em, password = pw)
             new_user.save()
+            messages.add_message(request, messages.SUCCESS, "Your data has been feeded!!")
             fm=User_Registration()
     else:
          fm = User_Registration()
